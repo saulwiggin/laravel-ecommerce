@@ -31,7 +31,6 @@ class CreateRecipesAndRelation extends Migration
             $table->bigInteger('ingredient_id')->unsigned()->index();
             $table->foreign('recipe_id')->references('id')->on('recipes');
             $table->foreign('ingredient_id')->references('id')->on('ingredients');
-            $table->decimal('quantity', 2, 3);
         });
     }
     public function down()

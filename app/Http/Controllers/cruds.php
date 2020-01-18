@@ -3,9 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Crud;
+use Illuminate\Http\Response;
+use Faker\Generator;
 
 class cruds extends Controller
 {
+  public function create(Generator $faker)
+  {
+    $crud = new Crud();
+    $crud->name = $faker->lexify('????????');
+    $crud->color = $faker->boolean ? 'red' : 'green';
+    $crud->save();
+
+    return response($crud->jsonSerialize(), Response::HTTP_CREATED);
+  }
+
   public function index()
   {
     return response(Crud::all()->jsonSerialize(), Response::HTTP_OK);
@@ -18,16 +31,6 @@ class cruds extends Controller
     $crud->save();
 
     return response(null, Response::HTTP_OK);
-  }
-
-  public function create(Generator $faker)
-  {
-    $crud = new Crud();
-    $crud->name = $faker->lexify('????????');
-    $crud->color = $faker->boolean ? 'red' : 'green';
-    $crud->save();
-
-    return response($crud->jsonSerialize(), Response::HTTP_CREATED);
   }
 
   public function destroy($id)

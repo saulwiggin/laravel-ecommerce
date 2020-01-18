@@ -14,9 +14,9 @@ use Illuminate\Http\Request;
 */
 Route::get('/ingredients', 'IngredientController@index');
 
-Route::post('/recipes', 'RecipeController@save');
-Route::get('/recipe/{id}', 'RecipeController@fetch');
-Route::resource('/cruds', 'CrudsController', [
+Route::post('/recipes', 'recipe@save');
+Route::get('/recipe/{id}', 'recipe@fetch');
+Route::resource('/cruds', 'cruds', [
   'except' => ['edit', 'show', 'store']
 ]);
 
